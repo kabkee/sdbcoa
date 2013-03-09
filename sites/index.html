@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SDB COA Management Web App 0.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/sdbcoaMain.css" rel="stylesheet">
+
+    <!-- Loading Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <!--<link rel="shortcut icon" href="images/favicon.ico">-->
+
+
+    <script>
+
+    </script>
+</head>
+<body>
+    <div id='loginContainer' class="container">
+        <div class="login">
+            <div class="login-screen">
+                <div class="login-icon">
+                    <img src="images/login/icon.png" alt="Welcome to Mail App" />
+                    <h4>Welcome to <small>SDB COA Mangement Center</small></h4>
+                </div>
+
+                <div class="login-form">
+                    <div class="control-group">
+                        <input type="text" class="login-field" value="" placeholder="Enter your name" id="login-name" />
+                        <label class="login-field-icon fui-man-16" for="login-name"></label>
+                    </div>
+
+                    <div class="control-group">
+                        <input type="password" class="login-field" value="" placeholder="Password" id="login-pass" />
+                        <label class="login-field-icon fui-lock-16" for="login-pass"></label>
+                    </div>
+
+                    <a class="btn btn-primary btn-large btn-block" id="login-btn" href="#">Login</a>
+                    <a class="login-link" href="#">Lost your password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id='mngContainer' class="container">
+        <div class='demo-logo'>
+            SDB COA Management
+        </div>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="nav-collapse collapse" id='navMenu'>
+                            <ul class="nav">
+                                <li>
+                                    <a href="#" id="aHome">
+                                        Home
+                                        <span class="navbar-unread">1</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="aDataMng">
+                                        Data Manager
+                                        <span class="navbar-unread"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="aCoaMng">
+                                        COA Manager
+                                        <span class="navbar-unread"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        About Us
+                                        <span class="navbar-unread">1</span>
+                                    </a>
+                                </li>
+                                <!--<li class="active">-->
+                                    <!--<a href="#">-->
+                                        <!--Messages-->
+                                        <!--<span class="navbar-unread">1</span>-->
+                                    <!--</a>-->
+                                    <!--<ul>-->
+                                        <!--<li><a href="#">Element One</a></li>-->
+                                        <!--<li>-->
+                                            <!--<a href="#">Sub menu</a>-->
+                                            <!--<ul>-->
+                                                <!--<li><a href="#">Element One</a></li>-->
+                                                <!--<li><a href="#">Element Two</a></li>-->
+                                                <!--<li><a href="#">Element Three</a></li>-->
+                                            <!--</ul> &lt;!&ndash; /Sub menu &ndash;&gt;-->
+                                        <!--</li>-->
+                                        <!--<li><a href="#">Element Three</a></li>-->
+                                    <!--</ul> &lt;!&ndash; /Sub menu &ndash;&gt;-->
+                                <!--</li>-->
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row " id="main">
+                <div class="span12">
+
+                   <div class="row">
+                       <h1>Preview</h1>
+                       <div class="span6 formBorder" >
+                           <div id='previewDiv' style='height: 510px'>
+                               Hi, it's preview Div.<br>
+                               up to here.
+                           </div>
+                       </div>
+                       <div class="span5 formBorder" >
+                           <form class="form-horizontal">
+                               <div class="control-group ">
+                                   <label class="control-label" for="selectCat">Cat No.</label>
+                                   <div class="control">
+                                       <select  id="selectCat" value="Select Lot No.." class="span3" tabindex="1">
+                                           <option>Select Cat No..</option>
+                                       </select>
+                                   </div>
+                                   <label class="control-label" for="selectLot">Lot No.</label>
+                                   <div class="control">
+                                       <select  id="selectLot" value="Select Lot No.." class="span3" tabindex="1">
+                                           <option>Select Lot No..</option>
+                                       </select>
+                                   </div>
+                                   <label class="control-label" for="inputQty">Q'ty</label>
+                                   <div class="control">
+                                       <input type="number" class="input_right" value="" placeholder="Enter Quantity" id="inputQty" />
+                                   </div>
+                               </div>
+                           </form>
+                       </div>
+                       <div class="span5 formBorder" style="margin-top: 20px">
+                           <form class="form-horizontal">
+                               <div class="control-group form-inline ">
+                                   <label class="control-label" for="inputPINo">PI No.</label>
+                                   <div class="control">
+                                       <input type="text" class="input_right" value="" placeholder="Enter PI No." id="inputPINo" />
+                                   </div>
+                                   <label class="control-label" for="inputCINo">CI No.</label>
+                                   <div class="control">
+                                       <input type="text" class="input_right" value="" placeholder="Enter CI No." id="inputCINo" />
+                                   </div>
+                                   <div class="control">
+                                       <button style="width: 200px" class="btn btn-primary btn-large btn-block btn-danger" type="submit" id="btnStore">Store</button>
+                                   </div>
+                               </div>
+                           </form>
+                        </div>
+                   </div>
+
+                </div>
+
+            </div>
+
+            <div class="row maxHeight600" id="dataMng">
+                <!--<div class="control">-->
+                    <!--<select  id="selectMode" value="Select Lot No.." class="span3" tabindex="1">-->
+                        <!--<option >Search Mode</option>-->
+                        <!--<option selected>Add Lot Data</option>-->
+                        <!--<option>Add Prd Data</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+                <div class="span5">
+                    <div class='row'>
+                        <div class="span5">
+                            <h3>Lot Management</h3>
+
+                            <form class="form-horizontal formBorder">
+                                <div class="control-group form-inline">
+                                    <label class="control-label" for="inputCatNo">Cat No.</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter Cat No." id="inputCatNo" />
+                                    </div>
+                                    <label class="control-label" for="inputLotNo">Lot No.</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter Lot No." id="inputLotNo" />
+                                    </div>
+                                    <label class="control-label" for="inputMFGDate">MFG Date.</label>
+                                    <div class="control">
+                                        <input type="date" class="input_right" value="" placeholder="Enter MFG Date." id="inputMFGDate" />
+                                    </div>
+                                    <label class="control-label" for="inputExpDate">Exp Date.</label>
+                                    <div class="control">
+                                        <input type="date" class="input_right" value="" placeholder="Enter Exp Date." id="inputExpDate" />
+                                    </div>
+                                    <div class="control">
+                                        <button style="position:relative; width: 100px" class="btn btn-primary btn-large btn-warning" type="submit" id="btnSearchLot">Search</button>
+                                        <button style="width: 100px" class="btn btn-primary btn-large btn-danger" type="submit" id="btnAddLot">Add</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="span5">
+                            <h3>Product Management</h3>
+                            <form class="form-horizontal formBorder">
+                                <div class="control-group form-inline">
+                                    <label class="control-label" for="inputCatPrdMng">Cat No.</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter Cat No." id="inputCatPrdMng" />
+                                    </div>
+                                    <label class="control-label" for="inputPrdType">Prd Type</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter Prd Type." id="inputPrdType" />
+                                    </div>
+                                    <label class="control-label" for="inputPrdSort">Prd Sort</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter Prd Sort." id="inputPrdSort" />
+                                    </div>
+                                    <div class="control">
+                                        <button style="position:relative; width: 100px" class="btn btn-primary btn-large btn-warning" type="submit" id="btnSearchPrd">Search</button>
+                                        <button style="width: 100px" class="btn btn-primary btn-large btn-danger" type="submit" id="btnAddPrd">Add</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="span7">
+                    <h3>Result</h3>
+                    <div style='height: 510px' class=" formBorder">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row maxHeight600" id="coaMng">
+                <div class="span5">
+                    <div class='row'>
+                        <div class="span5">
+                            <h3>COA Management</h3>
+                            <form class="form-horizontal formBorder">
+
+                                <!--<div class="control-group form-inline error">-->
+                                    <!--<div class="control ">-->
+                                        <!--<input class="" type="search" value="" placeholder="Search" />-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <div class="control-group form-inline">
+                                    <label class="control-label" for="inputPINoSearch">PI No.</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter PI No." id="inputPINoSearch" />
+                                    </div>
+                                    <label class="control-label" for="inputCINoSearch">CI No.</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter CI No." id="inputCINoSearch" />
+                                    </div>
+                                    <label class="control-label" for="inputCmpnSearch">Company</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter Company Name" id="inputCmpnSearch" />
+                                    </div>
+                                    <label class="control-label" for="inputLotNoSearch">Lot No.</label>
+                                    <div class="control">
+                                        <input type="text" class="input_right" value="" placeholder="Enter Lot No." id="inputLotNoSearch" />
+                                    </div>
+                                    <div class="control">
+                                        <button style="width: 200px" class="btn btn-primary btn-large btn-block btn-danger" type="submit" id="btnSearch">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="span7">
+                        <h3>Result</h3>
+                        <div style='height: 510px' class=" formBorder">
+
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id='footer' class="container myFooter">
+        <h2>Here's Footer, NOT implemented YET.</h2>
+        <div class="row demo-row">
+            <div class="span3">
+                <a href="#" class="btn btn-large btn-block">Default Button</a>
+            </div>
+            <div class="span3">
+                <a href="#" class="btn btn-large btn-block btn-primary">Primary Button</a>
+            </div>
+            <div class="span3">
+                <a href="#" class="btn btn-large btn-block btn-info">Info Button</a>
+            </div>
+            <div class="span3">
+                <a href="#" class="btn btn-large btn-block btn-danger">Danger Button</a>
+            </div>
+        </div> <!-- /row -->
+
+        <div class="control-group form-inline">
+            <label class="label_left" for="lotNumber">Lot No.</label>
+            <input type="text" id="lotNumber" class="input_right" value="" placeholder="Enter LotNumber" />
+        </div>
+        <div class="control-group form-inline">
+            <label class="label_left" for="catNo">Cat No.</label>
+            <input type="text" class="input_right" value="" placeholder="Enter Quantity" id="catNo" />
+        </div>
+    </div>
+
+
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="js/js_flatui/jquery.dropkick-1.0.0.js"></script>
+    <script src="js/js_flatui/custom_checkbox_and_radio.js"></script>
+    <script src="js/js_flatui/custom_radio.js"></script>
+    <script src="js/js_flatui/jquery.tagsinput.js"></script>
+    <script src="js/js_flatui/bootstrap-tooltip.js"></script>
+    <script src="js/js_flatui/jquery.placeholder.js"></script>
+    <script src="js/js_flatui/application.js"></script>
+    <script src="js/sdbcoaMain.js"></script>
+    <script type="text/javascript" src="js/js_jspdf/jspdf.js"></script>
+    <script type="text/javascript" src="js/js_jspdf/jspdf.plugin.from_html.js"></script>
+
+
+    <!--[if lt IE 8]>
+    <script src="js/js_flatui/icon-font-ie7.js"></script>
+    <script src="js/js_flatui/lte-ie7-24.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try{
+            var pageTracker = _gat._getTracker("UA-19972760-2");
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>
+
+</body>
+</html>
+

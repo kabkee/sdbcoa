@@ -1,0 +1,21 @@
+
+.formBorder{
+    padding: 10px;
+    border: 5px solid #435774;
+    /*width: 1px;*/
+}
+.control-label{
+    margin-left: -70px;
+}
+.control{
+    margin-left: 100px;
+}
+.maxHeight600 .previewDiv{
+    height: 600px;
+}
+.myFooter{
+    border-top: 5px solid #435774;
+    margin-top: 20px;
+    bottom: 0;
+    background-color: darkgray;
+}
