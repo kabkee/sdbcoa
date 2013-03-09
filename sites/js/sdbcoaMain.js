@@ -12,12 +12,12 @@ $(document).ready(function() {
     var $aDataMng = $('#aDataMng');
     var $aCoaMng = $('#aCoaMng');
 
-//    $main.show();
-    $main.hide();
+    $main.show();
+//    $main.hide();
 //    $dataMng.show();
     $dataMng.hide();
-    $coaMng.show();
-//    $coaMng.hide();
+//    $coaMng.show();
+    $coaMng.hide();
 
     $aHome.click( function(e){
         $main.show("fast");
