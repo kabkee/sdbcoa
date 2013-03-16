@@ -20,6 +20,20 @@
     </script>
 </head>
 <body>
+
+    <!--/************************** Loading Animation *********************************/-->
+    <div id="Gen" class="">
+        <div class="block" id="rotate_01"></div>
+        <div class="block" id="rotate_02"></div>
+        <div class="block" id="rotate_03"></div>
+        <div class="block" id="rotate_04"></div>
+        <div class="block" id="rotate_05"></div>
+        <div class="block" id="rotate_06"></div>
+        <div class="block" id="rotate_07"></div>
+        <div class="block" id="rotate_08"></div>
+    </div>
+
+
     <div id='loginContainer' class="container">
         <div class="login">
             <div class="login-screen">
@@ -117,7 +131,7 @@
                        <div class="span6 formBorder" >
                            <div id='previewDiv' style='height: 510px'>
                                Hi, it's preview Div.<br>
-                               up to here.
+                               up to here.<br>
                            </div>
                        </div>
                        <div class="span5 formBorder" >
@@ -154,7 +168,7 @@
                                        <input type="text" class="input_right" value="" placeholder="Enter CI No." id="inputCINo" />
                                    </div>
                                    <div class="control">
-                                       <button style="width: 200px" class="btn btn-primary btn-large btn-block btn-danger" type="submit" id="btnStore">Store</button>
+                                       <button style="width: 200px" class="btn btn-primary btn-large btn-block btn-danger" type="button" id="btnStore">Store</button>
                                    </div>
                                </div>
                            </form>
@@ -197,8 +211,8 @@
                                         <input type="date" class="input_right" value="" placeholder="Enter Exp Date." id="inputExpDate" />
                                     </div>
                                     <div class="control">
-                                        <button style="position:relative; width: 100px" class="btn btn-primary btn-large btn-warning" type="submit" id="btnSearchLot">Search</button>
-                                        <button style="width: 100px" class="btn btn-primary btn-large btn-danger" type="submit" id="btnAddLot">Add</button>
+                                        <button style="position:relative; width: 100px" class="btn btn-primary btn-large btn-warning" type="button" id="btnSearchLot">Search</button>
+                                        <button style="width: 100px" class="btn btn-primary btn-large btn-danger" type="button" id="btnAddLot">Add</button>
                                     </div>
                                 </div>
                             </form>
@@ -220,8 +234,8 @@
                                         <input type="text" class="input_right" value="" placeholder="Enter Prd Sort." id="inputPrdSort" />
                                     </div>
                                     <div class="control">
-                                        <button style="position:relative; width: 100px" class="btn btn-primary btn-large btn-warning" type="submit" id="btnSearchPrd">Search</button>
-                                        <button style="width: 100px" class="btn btn-primary btn-large btn-danger" type="submit" id="btnAddPrd">Add</button>
+                                        <button style="position:relative; width: 100px" class="btn btn-primary btn-large btn-warning" type="button" id="btnSearchPrd">Search</button>
+                                        <button style="width: 100px" class="btn btn-primary btn-large btn-danger" type="button" id="btnAddPrd">Add</button>
                                     </div>
                                 </div>
                             </form>
@@ -230,7 +244,7 @@
                 </div>
                 <div class="span7">
                     <h3>Result</h3>
-                    <div style='height: 510px' class=" formBorder">
+                    <div id="lotResult" style='height: 510px' class=" formBorder">
 
                     </div>
                 </div>
@@ -268,7 +282,7 @@
                                         <input type="text" class="input_right" value="" placeholder="Enter Lot No." id="inputLotNoSearch" />
                                     </div>
                                     <div class="control">
-                                        <button style="width: 200px" class="btn btn-primary btn-large btn-block btn-danger" type="submit" id="btnSearch">Search</button>
+                                        <button style="width: 200px" class="btn btn-primary btn-large btn-block btn-danger" type="button" id="btnSearch">Search</button>
                                     </div>
                                 </div>
                             </form>
@@ -324,9 +338,9 @@
     <script src="js/js_flatui/bootstrap-tooltip.js"></script>
     <script src="js/js_flatui/jquery.placeholder.js"></script>
     <script src="js/js_flatui/application.js"></script>
-    <script src="js/sdbcoaMain.js"></script>
     <script type="text/javascript" src="js/js_jspdf/jspdf.js"></script>
     <script type="text/javascript" src="js/js_jspdf/jspdf.plugin.from_html.js"></script>
+    <script src="js/sdbcoaMain.js"></script>
 
 
     <!--[if lt IE 8]>

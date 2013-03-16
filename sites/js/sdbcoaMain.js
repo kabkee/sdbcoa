@@ -4,7 +4,11 @@ $(document).ready(function() {
     var $main = $('#main');
     var $dataMng = $('#dataMng');
     var $coaMng = $('#coaMng');
+    var $Gen = $('#Gen');
+    var $lotResult = $('#lotResult');
 
+    //Gen Hide
+    $Gen.hide();
     //loginContainer Hide
     $loginContainer.hide();
 
@@ -12,10 +16,10 @@ $(document).ready(function() {
     var $aDataMng = $('#aDataMng');
     var $aCoaMng = $('#aCoaMng');
 
-    $main.show();
-//    $main.hide();
-//    $dataMng.show();
-    $dataMng.hide();
+//    $main.show();
+    $main.hide();
+    $dataMng.show();
+//    $dataMng.hide();
 //    $coaMng.show();
     $coaMng.hide();
 
@@ -38,7 +42,62 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    var pdf = new jsPDF();
+    var $inputCatNo = $('#inputCatNo');
+    var $inputLotNo = $('#inputLotNo');
+    var $inputMFGDate = $('#inputMFGDate');
+    var $inputExpDate = $('#inputExpDate');
+
+    // Lot MNG Search click.
+    var $btnSearchLot = $('#btnSearchLot');
+    $btnSearchLot.on('click', function(e){
+        $Gen.show();
+        $.post('/lots/search',{catNo: $inputCatNo.val(), lotNo: $inputLotNo.val(), mfgDate: $inputMFGDate.val()
+            , expDate: $inputExpDate.val() }, function(data){
+                $lotResult.append(data+'<br>');
+                console.log('Success searching Lots information');
+            }, 'json').done(function(){
+                $Gen.hide();
+            });
+        e.preventDefault();
+    });
+    var $btnStore = $('#btnStore');
+    var $previewDiv = $('#previewDiv');
+    $btnStore.on('click', function(e){
+        $Gen.show();
+        $.post('/lots/search',{catNo: $inputCatNo.val(), lotNo: $inputLotNo.val(), mfgDate: $inputMFGDate.val()
+            , expDate: $inputExpDate.val() }, function(data){
+            $previewDiv.append(data+'<br>');
+            console.log('Success searching Lots information');
+        }, 'json').done(function(){
+                $Gen.hide();
+            });
+        e.preventDefault();
+    });
+
+
+
+
+//
+//    inputMFGDate
+//
+//
+//    btnAddLot
+//
+//    $.getJSON('/hi', function(data){
+//        $('body').append( data );
+//    });
+
+
+
+});
+
+
+
+
+
+
+
+//    var pdf = new jsPDF();
 
 
 //    pdf.text(20, 20, 'Hello world!');
@@ -71,5 +130,3 @@ $(document).ready(function() {
 //    var string = pdf.output('datauristring');
 //
 //    $('#previewIframe').attr('src', string);
-
-});
