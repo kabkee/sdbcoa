@@ -5,6 +5,12 @@ var url = require('url');
 var log = console.log;
 app.use(express.bodyParser());
 
+
+var srvStatus = {
+    status: "off",   // not capitall ["on", "off"]
+    version: "Beta"
+};
+
 process.env.MONGOHQ_URL= "mongodb://kabkee:kf3kd@linus.mongohq.com:10010/app13046795";
 process.on('uncaughtException', function (err) {
  console.log('Caught exception: ' + err);
@@ -30,7 +36,10 @@ app.get('/', function(request, response) {
   // response.send("What\'s up? This page is gonna be a great web app by Kabkee Moon :D<BR> Hold on a second.<br>You may visit <a href='https://googledrive.com/host/0B70xA4jw5f9benN1RzlCMkFMckE/index.html'>here</a>")
 	response.sendfile(__dirname + '/sites/index.html');
 });
-
+app.get('/status', function(request, response) {
+    response.send(srvStatus);
+    console.log("**** requested /status")
+});
 app.post('/lots/search', function(request, response){
     console.log(request.body.catNo);
     mongodb.Db.connect(process.env.MONGOHQ_URL, function(error, client) {

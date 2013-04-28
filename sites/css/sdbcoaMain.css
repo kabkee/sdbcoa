@@ -19,6 +19,12 @@
     bottom: 0;
     background-color: darkgray;
 }
+.alertCenter{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
 
 /**************** Loding Animation when accessing Ajax *****************/
 
