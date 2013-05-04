@@ -1,12 +1,60 @@
-app = {
+var app = {
     prevSrvStatus: '',
-    srvStatus: ''
+    srvStatus: '',
+
+    getPrevStatus: function(){
+        return this.prevSrvStatus;
+    },
+    getStatus: function(){
+        return this.srvStatus;
+    },
+    setPrevStatus: function(status){
+        this.prevSrvStatus = status;
+    },
+    setStatus: function(status){
+        this.srvStatus = status;
+    }
+};
+var appConnect = {
+
+    GetStatus: function(){
+        var result;
+        $.get('/status', function(data){
+            if(data.status != "on"){
+                result = true;
+            }else if(data.status != "off"){
+                result = false;
+            }
+            return result;
+        });
+    }
+};
+var appAlert ={
+
+//    잠시 서버가 중단 되었습니다. 장기간 지속될 경우, 담당자에게 연락하세요. alert-error
+//    서버가 다시 살아났습니다~ :) alert-success
 };
 
 $(document).ready(function() {
+    var $window = $(window);
     var $alert = $('.alert');
-    var $srvOffAlert = $('#srvOffAlert');
-    var $srvBackAlert = $("#srvBackAlert");
+    var $divAlert = $('#divAlert');
+    function showAlertFnc(statusOn){
+        if(statusOn == false){
+            var $divAlert_span = $('#divAlert_span');
+            $divAlert_span.css({"marginLeft": 20+"px", "top": $divAlert.height() + "px"})
+                .text("잠시 서버가 중단 되었습니다. 장기간 지속될 경우, 담당자에게 연락하세요.");
+            $divAlert.addClass("alert-error").show("fast");
+        }else{
+            $divAlert.hide();
+        }
+    }
+
+    $window.scroll(function() {
+        var position = $window.scrollTop();
+        $divAlert.css({"top": ( $divAlert.height()) + "px"});
+    });
+
     var $loginContainer = $('#loginContainer');
     var $mngContainer = $('#mngContainer');
     var $main = $('#main');
@@ -17,68 +65,47 @@ $(document).ready(function() {
     var $lotRequest = $('#lotRequest');
     var $aboutUs = $('#aboutUs');
 
-    //Gen Hide - rolling loading image
-    $Gen.hide();
-    //loginContainer Hide
-    $loginContainer.hide();
-    $alert.hide();
-
     var $aHome = $('#aHome');
     var $aDataMng = $('#aDataMng');
     var $aCoaMng = $('#aCoaMng');
     var $aLotRequest = $('#aLotRequest');
     var $aAboutUs = $('#aAboutUs');
 
-//    $main.show();
-    $main.hide();
-//    $dataMng.show();
-    $dataMng.hide();
-//    $coaMng.show();
-    $coaMng.hide();
-    $lotRequest.show();
-//    $lotRequest.hide();
-//    $aboutUs.show();
-    $aboutUs.hide();
+    var menuBtnList = [$main, $dataMng, $coaMng, $lotRequest, $aboutUs];
+    function showMenu(MenuNameWannaShow){
+        MenuNameWannaShow.show("fast");
+        for(var i=0; i<menuBtnList.length; i++){
+            if(MenuNameWannaShow != menuBtnList[i]){
+                menuBtnList[i].hide("fast");
+            }
+        }
+    }
+    showAlertFnc(appConnect.GetStatus());
+//    showAlertFnc(false);
 
-    $aHome.click( function(e){
-        $main.show("fast");
-        $dataMng.hide("fast");
-        $coaMng.hide("fast");
-        $lotRequest.hide("fast");
-        $aboutUs.hide("fast");
-        e.preventDefault();
+    //Gen Hide - rolling loading image
+    $Gen.hide();
+    //loginContainer Hide
+    $loginContainer.hide();
+    //alert Hide
+//    $alert.hide();
+    // first show menu is $lotRequest
+    showMenu($lotRequest);
+
+    $aHome.click( function(){
+        showMenu($main);
     });
-    $aDataMng.click( function(e){
-        $main.hide("fast");
-        $dataMng.show("fast");
-        $coaMng.hide("fast");
-        $lotRequest.hide("fast");
-        $aboutUs.hide("fast");
-        e.preventDefault();
+    $aDataMng.click( function(){
+        showMenu($dataMng);
     });
-    $aCoaMng.click( function(e){
-        $main.hide("fast");
-        $dataMng.hide("fast");
-        $coaMng.show("fast");
-        $lotRequest.hide("fast");
-        $aboutUs.hide("fast");
-        e.preventDefault();
+    $aCoaMng.click( function(){
+        showMenu($coaMng);
     });
-    $aLotRequest.click( function(e){
-        $main.hide("fast");
-        $dataMng.hide("fast");
-        $coaMng.hide("fast");
-        $lotRequest.show("fast");
-        $aboutUs.hide("fast");
-        e.preventDefault();
+    $aLotRequest.click( function(){
+        showMenu($lotRequest);
     });
-    $aAboutUs.click( function(e){
-        $main.hide("fast");
-        $dataMng.hide("fast");
-        $coaMng.hide("fast");
-        $lotRequest.hide("fast");
-        $aboutUs.show("fast");
-        e.preventDefault();
+    $aAboutUs.click( function(){
+        showMenu($aboutUs);
     });
 
 
@@ -113,27 +140,27 @@ $(document).ready(function() {
             });
         e.preventDefault();
     });
-    setInterval(function(){
-        app.prevSrvStatus = app.srvStatus;
-
-        $.get('/status', function(data){
-            if(data.status != "on"){
-                $srvOffAlert.show();
-                app.srvStatus = data.status;
-                setTimeout(function(){
-                    $srvOffAlert.hide();
-                },3000);
-            }else{
-                if(app.prevSrvStatus == "off"){
-                    $srvBackAlert.show();
-                    setTimeout(function(){
-                        $srvBackAlert.hide();
-                    },3000);
-                }
-                app.srvStatus = data.status;
-            }
-        });
-    },5000);
+//    setInterval(function(){
+//        app.setPrevStatus(app.getStatus());
+//
+//        $.get('/status', function(data){
+//            if(data.status != "on"){
+//                $srvOffAlert.show();
+//                app.srvStatus = data.status;
+//                setTimeout(function(){
+//                    $srvOffAlert.hide();
+//                },3000);
+//            }else{
+//                if(app.prevSrvStatus == "off"){
+//                    $srvBackAlert.show();
+//                    setTimeout(function(){
+//                        $srvBackAlert.hide();
+//                    },3000);
+//                }
+//                app.srvStatus = data.status;
+//            }
+//        });
+//    },5000);
 
 
 });
