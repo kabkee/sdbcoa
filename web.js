@@ -7,7 +7,8 @@ app.use(express.bodyParser());
 
 
 var srvStatus = {
-    status: "off",   // not capitall ["on", "off"]
+    srvOnOff : {On:true, Off:false },
+    status: this.srvOnOff.off,
     version: "Beta"
 };
 

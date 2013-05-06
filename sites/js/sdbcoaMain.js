@@ -1,6 +1,7 @@
 var app = {
-    prevSrvStatus: '',
-    srvStatus: '',
+    prevSrvStatus: false,
+    srvStatus: false,
+    reLive : false,
 
     getPrevStatus: function(){
         return this.prevSrvStatus;
@@ -20,11 +21,18 @@ var appConnect = {
     GetStatus: function(){
         var result;
         $.get('/status', function(data){
-            if(data.status != "on"){
+            if(data.status == true){
+                if(app.srvStatus==false){
+                    app.reLive = true;
+                }else{
+                    app.reLive = false;
+                }
                 result = true;
-            }else if(data.status != "off"){
+            }else if(data.status == false){
                 result = false;
             }
+            app.prevSrvStatus = app.srvStatus;
+            app.srvStatus = data.status;
             return result;
         });
     }
@@ -40,6 +48,7 @@ $(document).ready(function() {
     var $alert = $('.alert');
     var $divAlert = $('#divAlert');
     function showAlertFnc(statusOn){
+        // WHAT IF RE-LIVE IS TRUE;
         if(statusOn == false){
             var $divAlert_span = $('#divAlert_span');
             $divAlert_span.css({"marginLeft": 20+"px", "top": $divAlert.height() + "px"})
