@@ -33,6 +33,14 @@ var $previewDiv = $('#previewDiv');
 var $lotRequestQueNew = $('#lotRequestQueNew');
 var $lotRequestQue = $('#lotRequestQue');
 
+var $BtnLotRequestSaveWT = $('#BtnLotRequestSaveWT');
+var $BtnLotRequestEditWT = $('#BtnLotRequestEditWT');
+var $BtnLotRequestSaveDN = $('#BtnLotRequestSaveDN');
+var $BtnLotRequestEditDN = $('#BtnLotRequestEditDN');
+var $lotRequestQueAddLot = $('#lotRequestQueAddLot');
+var $lotRequestQueAddExp = $('#lotRequestQueAddExp');
+var $lotRequestQueAddMfg = $('#lotRequestQueAddMfg');
+
 var app = {
     srvStatus: false,
     reLive : false,
@@ -72,30 +80,36 @@ var appConnect = {
     }
 };
 
-var testLotRequest = { data: [ { lot : "c01234567", expDate: "2013-10-01", mfgDate: "2011-01-01", new: false},
+var testLotRequest = [ { lot : "c01234567", expDate: "2013-10-01", mfgDate: "2011-01-01", new: false},
     { lot : "c01234568", expDate: "2013-10-02", mfgDate: "2011-01-02", new: false},
     { lot : "c01234569", expDate: "2013-10-03", mfgDate: "2011-01-03", new: true},
     { lot : "c01234570", expDate: "2013-10-04", mfgDate: "2011-01-04", new: false},
-    { lot : "c01234571", expDate: "2013-10-05", mfgDate: "2011-01-05", new: true} ] };
+    { lot : "c01234571", expDate: "2013-10-05", mfgDate: "2011-01-05", new: true} ];
 
 function makeListOfLotRequest(data){
     if(data){
-        for(var i=0; i<data.data.length; i++){
-            var eachItem = data.data[i];
-            if(eachItem.new == true){
-                var listItem = "<ol class ='selectable'>";
-                listItem = "<li class='ui-widget-content'>" +
-                    "<input type='text' value="+  + ">eachItem.lot</input>" +
-                    "<input type='text' value="+  + ">eachItem.expDate</input>" +
-                    "<input type='text' value="+  + ">eachItem.mfgDate</input>" +
-                    "</li>";
-                listItem = "</ol>";
-                $lotRequestQueNew.html(listItem);
-                $lotRequestQueNew.selectable;
-            }else{
+        var listItemNew = "<ul class ='selectable'>";
+        var listItem = "<ul class ='selectable'>";
+        for(var i=0; i<data.length; i++){
+            var eachItem = data[i];
+            var tempItem = "<li class='ui-widget-content'>"+
+                "<input type='text' disabled value="+ eachItem.lot + ">" +
+                "<input type='date' disabled value="+ eachItem.expDate + ">" +
+                "<input type='date' disabled value="+ eachItem.mfgDate + ">" +
+                "</li>";
 
+            if(eachItem.new == true){
+                listItemNew += tempItem;
+            }else{
+                listItem += tempItem;
             }
         }
+        listItemNew += "</ul>";
+        listItem += "</ul>";
+
+        $lotRequestQueNew.html(listItemNew);
+        $lotRequestQue.html(listItem);
+        $('.selectable').selectable();
     }else{
         $lotRequestQueNew.html("<h1>자료가 없습니다.</h1>");
         $lotRequestQue.html("<h1>자료가 없습니다.</h1>");
@@ -130,6 +144,7 @@ function showMenu(MenuNameWannaShow){
     }
 }
 function firstLoading(){
+
     showAlertFnc(appConnect.GetStatus());
 //    showAlertFnc(false);
 
@@ -138,18 +153,24 @@ function firstLoading(){
 
     //loginContainer Hide
     $loginContainer.hide();
+    $alert.hide();
 
     // first show menu is $lotRequest
     showMenu($lotRequest);
 
     makeListOfLotRequest(testLotRequest);
 }
-
+function addLotRequestNew(){
+    if( $lotRequestQueAddLot.val() && $lotRequestQueAddLot.val() && $lotRequestQueAddLot.val() ){
+        testLotRequest.push( {lot : $lotRequestQueAddLot.val(), expDate: $lotRequestQueAddExp.val(),
+            mfgDate: $lotRequestQueAddMfg.val(), new: true } );
+    }
+    makeListOfLotRequest(testLotRequest);
+}
 
 $(document).ready(function() {
 
     firstLoading();
-
 
     // Clicking Menu, change screen
     $aHome.click( function(){
@@ -167,6 +188,20 @@ $(document).ready(function() {
     $aAboutUs.click( function(){
         showMenu($aboutUs);
     });
+
+    $BtnLotRequestSaveWT.on('click',function(e){
+        console.log('123');
+//        console.log(e.parent('li').index());
+    });
+    $BtnLotRequestSave.on('click',function(e){
+
+    });
+    BtnLotRequestEditADD.on('click', function(e){
+        addLotRequestNew();
+        console.log("new lotrequest added")
+    });
+
+
 
     $btnSearchLot.on('click', function(e){
         $Gen.show();

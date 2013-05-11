@@ -24,7 +24,12 @@
     top: 10px;
     width: 100%;
 }
-
+.btnCustom{
+    margin-left: 10px;
+}
+.btnGroupCustom{
+    margin-top: 20px;
+}
 
 /**************** Loding Animation when accessing Ajax *****************/
 
