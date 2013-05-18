@@ -40,23 +40,24 @@ var $BtnLotRequestEditDN = $('#BtnLotRequestEditDN');
 var $lotRequestQueAddLot = $('#lotRequestQueAddLot');
 var $lotRequestQueAddExp = $('#lotRequestQueAddExp');
 var $lotRequestQueAddMfg = $('#lotRequestQueAddMfg');
+var $BtnLotRequestEditADD = $('#BtnLotRequestEditADD');
 
-var app = {
-    srvStatus: false,
-    reLive : false,
-    getStatus: function(){
-        return this.srvStatus;
+var app = (function(){
+    var srvStatus = false;
+    var reLive = false;
+    return { getStatus : function(){
+        return srvStatus;
     },
     setStatus: function(status){
-        this.srvStatus = status;
+        srvStatus = status;
     },
     getReLive: function(){
-        return this.srvStatus;
+        return reLive;
     },
     setReLive: function(status){
-        this.srvStatus = status;
-    }
-};
+        reLive = status;
+    } }
+})();
 var appConnect = {
     GetLotRequest: function(){
 
@@ -124,7 +125,6 @@ function showAlertFnc(statusOn){
             .text("잠시 서버가 중단 되었습니다. 장기간 지속될 경우, 담당자에게 연락하세요.");
         $divAlert.addClass("alert-error").show("fast");
     }else{
-        // WHAT IF RE-LIVE IS TRUE;
         if(app.getReLive() == true){
             $divAlert_span.css({"marginLeft": 20+"px", "top": $divAlert.height() + "px"})
                 .text("서버가 다시 살아났습니다~  :) 이힛.");
@@ -193,10 +193,10 @@ $(document).ready(function() {
         console.log('123');
 //        console.log(e.parent('li').index());
     });
-    $BtnLotRequestSave.on('click',function(e){
+    $BtnLotRequestSaveDN.on('click',function(e){
 
     });
-    BtnLotRequestEditADD.on('click', function(e){
+    $BtnLotRequestEditADD.on('click', function(e){
         addLotRequestNew();
         console.log("new lotrequest added")
     });
